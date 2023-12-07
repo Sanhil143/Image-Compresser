@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const session = require('express-session');
 const path = require('path')
-
+const imageRouter = require('./src/imageRouter')
 
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(bodyParser.json({ limit: process.env.REQUEST_LIMIT || '100kb' }));
 app.use(cookieParser());    
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/image',imageRouter)
 
 app.listen(3000, () => {
       console.log("Express app running on console");
